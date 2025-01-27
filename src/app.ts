@@ -1,10 +1,12 @@
 import http, { IncomingMessage, ServerResponse } from "http";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
 
 interface Request extends IncomingMessage {}
 interface Response extends ServerResponse {}
 
-const port = 3030;
+const port = process.env.PORT || 3030;
 
 // HELLO.HTML - SYNC
 fs.writeFileSync(`${__dirname}/hello.html`, "<h1>Hello World</h1>"); // Create a file
