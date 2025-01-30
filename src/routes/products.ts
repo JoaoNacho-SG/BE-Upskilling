@@ -4,18 +4,15 @@ import { products } from "../data/products";
 
 const productRoutes = express.Router();
 
-productRoutes.get(PRODUCTS.LIST, (_req, res) => {
-  res.status(200).json(products);
-});
-
 productRoutes.get(PRODUCTS.LIST, (req, res) => {
-  const limit = req.query.limit;
-  if (Number(limit) > 0) {
+  const { limit } = req.query;
+  if (limit) {
     res.status(200).json({
+      data: products.slice(0, Number(limit)),
       message: `Showing ${limit} of ${products.length} results`,
     });
   } else {
-    res.status(400).json({ message: "Invalid limit" });
+    res.status(200).json(products);
   }
 });
 
