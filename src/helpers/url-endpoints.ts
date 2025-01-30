@@ -10,4 +10,5 @@ export const USER: Endpoint = {
 
 export const PRODUCTS: Endpoint = {
   LIST: "/list",
+  ADD: "/add",
 };

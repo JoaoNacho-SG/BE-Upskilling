@@ -4,12 +4,5 @@ export interface Product {
   price: number;
   categories: string[];
   description: string;
-  measures: {
-    height: number;
-    width: number;
-  };
-  weight: string;
-  images: string[];
   related: string[];
-  recommendations: string;
 }

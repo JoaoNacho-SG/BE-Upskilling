@@ -13,5 +13,5 @@ export interface User {
     first: string;
     last: string;
   };
-  shoppingCarts: ShoppingCart[];
+  shoppingCarts?: ShoppingCart[];
 }
