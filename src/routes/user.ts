@@ -1,6 +1,7 @@
 import express from "express";
 import { USER } from "../helpers/url-endpoints";
 import users from "../data/users";
+import { createError } from "../middleware/errorHandlerFn";
 
 const userRoutes = express.Router();
 
@@ -16,11 +17,15 @@ userRoutes.get(USER.SIGNUP, (_req, res) => {
   res.status(200).json({ message: "Signup" });
 });
 
-userRoutes.post(USER.SIGNUP, (req, res) => {
+userRoutes.post(USER.SIGNUP, (req, res, next) => {
   const { first, last } = req.body.name;
   const { email } = req.body;
-  const newUser = { userId: users.length + 1, name: { first, last }, email };
-  res.status(200).json(newUser);
+  if (!first || !last || !email) {
+    next(createError("Name and email are required", 400));
+  } else {
+    const newUser = { userId: users.length + 1, name: { first, last }, email };
+    res.status(200).json(newUser);
+  }
 });
 
 export default userRoutes;
