@@ -3,7 +3,6 @@ interface ShoppingCart {
   products: string[];
   cartName: string;
   totalPrice: string;
-  totalWeight: string;
 }
 
 export interface User {
