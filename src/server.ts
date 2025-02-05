@@ -2,11 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/products";
-import { Request, Response } from "express";
 import { loggerFn } from "./middleware/loggerFn";
 import { errorHandler } from "./middleware/errorHandlerFn";
-import pool from "./db/db";
-import { getAllUsers } from "./db/queries/userQueries";
 
 dotenv.config();
 
