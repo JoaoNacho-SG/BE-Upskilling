@@ -3,9 +3,8 @@ interface Endpoint {
 }
 
 export const USER: Endpoint = {
-  LOGIN: "/login",
-  LOGOUT: "/logout",
-  SIGNUP: "/signup",
+  USERS: "/users",
+  USER_BY_ID: "/users/:userid",
 };
 
 export const PRODUCTS: Endpoint = {

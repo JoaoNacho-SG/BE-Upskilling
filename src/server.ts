@@ -15,26 +15,13 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api/user/", userRoutes);
-app.use("/api/products/", productRoutes);
+app.use("/api/", userRoutes);
+app.use("/api/", productRoutes);
 app.use(loggerFn);
 app.use(errorHandler);
 
 app.get("/", (_req, res) => {
   res.status(200).json({ message: "Yello!" });
-});
-
-app.get("/all-users", async (req: Request, res: Response) => {
-  const { limit } = req.query;
-  try {
-    const result = await getAllUsers({
-      limit: limit ? Number(limit) : undefined,
-    });
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error querying the database");
-  }
 });
 
 app.listen(PORT, () => {

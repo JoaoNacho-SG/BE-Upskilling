@@ -6,7 +6,7 @@ interface ShoppingCart {
 }
 
 export interface User {
-  userId: string;
+  userid: string;
   email: string;
   name: {
     first: string;
