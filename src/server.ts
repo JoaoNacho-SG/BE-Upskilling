@@ -4,6 +4,7 @@ import userRoutes from "./routes/user";
 import productRoutes from "./routes/products";
 import { loggerFn } from "./middleware/loggerFn";
 import { errorHandler } from "./middleware/errorHandlerFn";
+import shoppingCartRoutes from "./routes/shoppingCart";
 
 dotenv.config();
 
@@ -12,8 +13,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api/user/", userRoutes);
-app.use("/api/products/", productRoutes);
+app.use("/api/", userRoutes);
+app.use("/api/", productRoutes);
+app.use("/api/", shoppingCartRoutes);
 app.use(loggerFn);
 app.use(errorHandler);
 

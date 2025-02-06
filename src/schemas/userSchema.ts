@@ -1,13 +1,12 @@
-interface ShoppingCart {
-  cartId: string;
+export interface ShoppingCart {
+  cartid: string;
+  userid: string;
   products: string[];
-  cartName: string;
-  totalPrice: string;
-  totalWeight: string;
+  cartname: string;
 }
 
 export interface User {
-  userId: string;
+  userid: string;
   email: string;
   name: {
     first: string;

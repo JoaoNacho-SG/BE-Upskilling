@@ -1,31 +1,13 @@
 import express from "express";
 import { USER } from "../helpers/url-endpoints";
-import users from "../data/users";
-import { createError } from "../middleware/errorHandlerFn";
+import * as userControllers from "../controllers/userControllers";
 
 const userRoutes = express.Router();
 
-userRoutes.get(USER.LOGIN, (_req, res) => {
-  res.status(200).json({ message: "Login" });
-});
-
-userRoutes.get(USER.LOGOUT, (_req, res) => {
-  res.status(200).json({ message: "Logout" });
-});
-
-userRoutes.get(USER.SIGNUP, (_req, res) => {
-  res.status(200).json({ message: "Signup" });
-});
-
-userRoutes.post(USER.SIGNUP, (req, res, next) => {
-  const { first, last } = req.body.name;
-  const { email } = req.body;
-  if (!first || !last || !email) {
-    next(createError("Name and email are required", 400));
-  } else {
-    const newUser = { userId: users.length + 1, name: { first, last }, email };
-    res.status(200).json(newUser);
-  }
-});
+userRoutes.get(USER.USERS, userControllers.getAllUsers);
+userRoutes.get(USER.USER_BY_ID, userControllers.getUserById);
+userRoutes.post(USER.USERS, userControllers.createUser);
+userRoutes.put(USER.USER_BY_ID, userControllers.editUser);
+userRoutes.delete(USER.USER_BY_ID, userControllers.deleteUser);
 
 export default userRoutes;
