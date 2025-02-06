@@ -7,16 +7,16 @@ const users: User[] = [
     name: { first: "John", last: "Doe" },
     shoppingCarts: [
       {
-        cartId: "cart1",
+        userid: "1",
+        cartid: "cart1",
         products: ["3", "2", "4"],
-        cartName: "Groceries",
-        totalPrice: "100",
+        cartname: "Groceries",
       },
       {
-        cartId: "cart99",
+        userid: "1",
+        cartid: "cart99",
         products: ["1", "2", "3"],
-        cartName: "Essentials",
-        totalPrice: "199",
+        cartname: "Essentials",
       },
     ],
   },
@@ -26,10 +26,10 @@ const users: User[] = [
     name: { first: "Jane", last: "Smith" },
     shoppingCarts: [
       {
-        cartId: "cart2",
+        userid: "2",
+        cartid: "cart2",
         products: ["3"],
-        cartName: "Electronics",
-        totalPrice: "200",
+        cartname: "Electronics",
       },
     ],
   },
@@ -39,10 +39,10 @@ const users: User[] = [
     name: { first: "Alice", last: "Johnson" },
     shoppingCarts: [
       {
-        cartId: "cart3",
+        userid: "3",
+        cartid: "cart3",
         products: ["2"],
-        cartName: "Clothing",
-        totalPrice: "159",
+        cartname: "Clothing",
       },
     ],
   },
@@ -52,10 +52,10 @@ const users: User[] = [
     name: { first: "Bob", last: "Brown" },
     shoppingCarts: [
       {
-        cartId: "cart4",
+        userid: "4",
+        cartid: "cart4",
         products: ["1"],
-        cartName: "Books",
-        totalPrice: "50",
+        cartname: "Books",
       },
     ],
   },
@@ -65,10 +65,10 @@ const users: User[] = [
     name: { first: "Charlie", last: "Davis" },
     shoppingCarts: [
       {
-        cartId: "cart5",
+        userid: "5",
+        cartid: "cart5",
         products: ["4"],
-        cartName: "Toys",
-        totalPrice: "75",
+        cartname: "Toys",
       },
     ],
   },
