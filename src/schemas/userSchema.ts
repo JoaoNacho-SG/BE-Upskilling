@@ -1,16 +1,12 @@
 export interface ShoppingCart {
-  cartid: string;
-  userid: string;
-  products: string[];
+  cartid?: number;
+  userid: number;
   cartname: string;
 }
 
 export interface User {
-  userid: string;
+  userid?: number;
   email: string;
-  name: {
-    first: string;
-    last: string;
-  };
-  shoppingCarts?: ShoppingCart[];
+  first_name: string;
+  last_name: string;
 }

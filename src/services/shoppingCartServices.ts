@@ -4,9 +4,11 @@ import * as shoppingCartQueries from "../db/queries/shoppingCartQueries";
 export const getShoppingCart = async ({
   userid,
 }: {
-  userid: string;
+  userid: number;
 }): Promise<ShoppingCart[]> => {
-  const shoppingCart = await shoppingCartQueries.getShoppingCart({ userid });
+  const shoppingCart = await shoppingCartQueries.getShoppingCart({
+    userid: Number(userid),
+  });
   return shoppingCart;
 };
 
@@ -14,12 +16,10 @@ export const createShoppingCart = async ({
   userid,
   cartname,
 }: {
-  userid: string;
+  userid: number;
   cartname: string;
 }): Promise<ShoppingCart> => {
-  const cartid = Math.random().toString(36).substring(7);
   const newShoppingCart = await shoppingCartQueries.createShoppingCart({
-    cartid,
     userid,
     cartname,
   });
@@ -30,7 +30,7 @@ export const editShoppingCart = async ({
   cartid,
   cartname,
 }: {
-  cartid: string;
+  cartid: number;
   cartname: string;
 }): Promise<ShoppingCart> => {
   const editedShoppingCart = await shoppingCartQueries.editShoppingCart({
@@ -43,7 +43,7 @@ export const editShoppingCart = async ({
 export const deleteShoppingCart = async ({
   cartid,
 }: {
-  cartid: string;
+  cartid: number;
 }): Promise<ShoppingCart> => {
   const deletedShoppingCart = await shoppingCartQueries.deleteShoppingCart({
     cartid,
@@ -55,8 +55,8 @@ export const addProduct = async ({
   cartid,
   productid,
 }: {
-  cartid: string;
-  productid: string;
+  cartid: number;
+  productid: number;
 }): Promise<ShoppingCart> => {
   const newProduct = await shoppingCartQueries.addProduct({
     cartid,
@@ -69,8 +69,8 @@ export const removeProduct = async ({
   cartid,
   productid,
 }: {
-  cartid: string;
-  productid: string;
+  cartid: number;
+  productid: number;
 }): Promise<ShoppingCart> => {
   const removedProduct = await shoppingCartQueries.removeProduct({
     cartid,
@@ -82,7 +82,7 @@ export const removeProduct = async ({
 export const getCartProducts = async ({
   cartid,
 }: {
-  cartid: string;
+  cartid: number;
 }): Promise<ShoppingCart[]> => {
   const cartProducts = await shoppingCartQueries.getCartProducts({ cartid });
   return cartProducts;

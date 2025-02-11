@@ -13,41 +13,53 @@ export const getAllUsers = async ({
 export const getUserById = async ({
   userid,
 }: {
-  userid: string;
+  userid: number;
 }): Promise<User> => {
   const user = await userQueries.getUserById({ userid });
   return user;
 };
 
 export const createUser = async ({
-  name,
+  first_name,
+  last_name,
   email,
 }: {
-  name: { first: string; last: string };
+  first_name: string;
+  last_name: string;
   email: string;
 }): Promise<User> => {
-  const userid = Math.random().toString(36).substring(7);
-  const newUser = await userQueries.createUser({ name, email, userid });
+  const newUser = await userQueries.createUser({
+    first_name,
+    last_name,
+    email,
+  });
   return newUser;
 };
 
 export const editUser = async ({
   userid,
-  name,
+  first_name,
+  last_name,
   email,
 }: {
-  userid: string;
-  name: { first: string; last: string };
+  userid: number;
+  first_name: string;
+  last_name: string;
   email: string;
 }): Promise<User> => {
-  const editedUser = await userQueries.editUser({ userid, name, email });
+  const editedUser = await userQueries.editUser({
+    userid,
+    first_name,
+    last_name,
+    email,
+  });
   return editedUser;
 };
 
 export const deleteUser = async ({
   userid,
 }: {
-  userid: string;
+  userid: number;
 }): Promise<User> => {
   const deletedUser = await userQueries.deleteUser({ userid });
   return deletedUser;

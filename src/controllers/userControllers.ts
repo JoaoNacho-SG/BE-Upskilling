@@ -16,7 +16,7 @@ export const getUserById = async (
   next: NextFunction
 ) => {
   const { userid } = req.params;
-  const user = await userServices.getUserById({ userid });
+  const user = await userServices.getUserById({ userid: Number(userid) });
 
   if (!user) {
     next(createError("User was not found!", 404));
@@ -30,14 +30,14 @@ export const createUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { first, last } = req.body.name;
-  const { email } = req.body;
-  if (!first || !last || !email) {
+  const { first_name, last_name, email } = req.body;
+  if (!first_name || !last_name || !email) {
     next(createError("Name and email are required", 400));
   }
 
   const newUser = await userServices.createUser({
-    name: { first, last },
+    first_name,
+    last_name,
     email,
   });
   res.status(201).json(newUser);
@@ -49,20 +49,20 @@ export const editUser = async (
   next: NextFunction
 ) => {
   const { userid } = req.params;
-  const { first, last } = req.body.name;
-  const { email } = req.body;
+  const { first_name, last_name, email } = req.body;
 
   if (!userid) {
     next(createError("User was not found", 400));
   }
 
-  if (!first || !last || !email) {
+  if (!first_name || !last_name || !email) {
     next(createError("Name and email are required", 400));
   }
 
   const editedUser = await userServices.editUser({
-    userid,
-    name: { first, last },
+    userid: Number(userid),
+    first_name,
+    last_name,
     email,
   });
   res.status(200).json(editedUser);
@@ -75,7 +75,7 @@ export const deleteUser = async (
 ) => {
   const { userid } = req.params;
   try {
-    await userServices.deleteUser({ userid });
+    await userServices.deleteUser({ userid: Number(userid) });
     res.status(204).send();
   } catch (error) {
     if (error instanceof Error) {
