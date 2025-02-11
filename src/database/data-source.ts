@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import "reflect-metadata";
 import { CreateTables1739276837056 } from "./migrations/1739276837056-CreateTables";
+import { UserEntity } from "./entities/UserEntity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || "postgres",
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [UserEntity],
   subscribers: [],
   migrations: [CreateTables1739276837056],
 });

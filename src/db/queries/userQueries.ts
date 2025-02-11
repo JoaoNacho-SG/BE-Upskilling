@@ -59,7 +59,7 @@ export const editUser = async ({
 export const deleteUser = async ({
   userid,
 }: {
-  userid: number;
+  userid: string;
 }): Promise<User> => {
   const query = `DELETE FROM users WHERE userid = $1 RETURNING *`;
   const { rows } = await pool.query(query, [userid]);

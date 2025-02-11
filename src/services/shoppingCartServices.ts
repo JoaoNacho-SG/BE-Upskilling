@@ -1,89 +1,65 @@
 import { ShoppingCart } from "../schemas/userSchema";
-import * as shoppingCartQueries from "../db/queries/shoppingCartQueries";
+import { ShoppingCartRepository } from "../database/repositories/ShoppingCartRepository";
 
-export const getShoppingCart = async ({
-  userid,
-}: {
-  userid: number;
-}): Promise<ShoppingCart[]> => {
-  const shoppingCart = await shoppingCartQueries.getShoppingCart({
-    userid: Number(userid),
-  });
-  return shoppingCart;
-};
+export class ShoppingCartService {
+  constructor(public shoppingCartRepository: ShoppingCartRepository) {}
 
-export const createShoppingCart = async ({
-  userid,
-  cartname,
-}: {
-  userid: number;
-  cartname: string;
-}): Promise<ShoppingCart> => {
-  const newShoppingCart = await shoppingCartQueries.createShoppingCart({
-    userid,
-    cartname,
-  });
-  return newShoppingCart;
-};
+  public async getShoppingCart(userid: number): Promise<ShoppingCart[]> {
+    const shoppingCart = await this.shoppingCartRepository.getShoppingCart(
+      userid
+    );
+    return shoppingCart;
+  }
 
-export const editShoppingCart = async ({
-  cartid,
-  cartname,
-}: {
-  cartid: number;
-  cartname: string;
-}): Promise<ShoppingCart> => {
-  const editedShoppingCart = await shoppingCartQueries.editShoppingCart({
-    cartid,
-    cartname,
-  });
-  return editedShoppingCart;
-};
+  public async createShoppingCart(
+    userid: number,
+    cartname: string
+  ): Promise<ShoppingCart> {
+    const newShoppingCart =
+      await this.shoppingCartRepository.createShoppingCart(userid, cartname);
+    return newShoppingCart;
+  }
 
-export const deleteShoppingCart = async ({
-  cartid,
-}: {
-  cartid: number;
-}): Promise<ShoppingCart> => {
-  const deletedShoppingCart = await shoppingCartQueries.deleteShoppingCart({
-    cartid,
-  });
-  return deletedShoppingCart;
-};
+  public async editShoppingCart(
+    cartid: number,
+    cartname: string
+  ): Promise<ShoppingCart> {
+    const editedShoppingCart =
+      await this.shoppingCartRepository.editShoppingCart(cartid, cartname);
+    return editedShoppingCart;
+  }
 
-export const addProduct = async ({
-  cartid,
-  productid,
-}: {
-  cartid: number;
-  productid: number;
-}): Promise<ShoppingCart> => {
-  const newProduct = await shoppingCartQueries.addProduct({
-    cartid,
-    productid,
-  });
-  return newProduct;
-};
+  public async deleteShoppingCart(cartid: number): Promise<ShoppingCart> {
+    const deletedShoppingCart =
+      await this.shoppingCartRepository.deleteShoppingCart(cartid);
+    return deletedShoppingCart;
+  }
 
-export const removeProduct = async ({
-  cartid,
-  productid,
-}: {
-  cartid: number;
-  productid: number;
-}): Promise<ShoppingCart> => {
-  const removedProduct = await shoppingCartQueries.removeProduct({
-    cartid,
-    productid,
-  });
-  return removedProduct;
-};
+  // public async addProduct({
+  //   cartid,
+  //   productid,
+  // }: {
+  //   cartid: number;
+  //   productid: number;
+  // }): Promise<ShoppingCart> {
+  //   const newProduct = await shoppingCartQueries.addProduct({
+  //     cartid,
+  //     productid,
+  //   });
+  //   return newProduct;
+  // }
 
-export const getCartProducts = async ({
-  cartid,
-}: {
-  cartid: number;
-}): Promise<ShoppingCart[]> => {
-  const cartProducts = await shoppingCartQueries.getCartProducts({ cartid });
-  return cartProducts;
-};
+  // public async removeProduct({
+  //   cartid,
+  //   productid,
+  // }: {
+  //   cartid: number;
+  //   productid: number;
+  // }): Promise<ShoppingCart> {
+  //   const removedProduct = await shoppingCartQueries.removeProduct({
+  //     cartid,
+  //     productid,
+  //   });
+  //   return removedProduct;
+  // }
+}
