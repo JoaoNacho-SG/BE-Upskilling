@@ -11,7 +11,7 @@ const pool = new Pool({
   port: Number.parseInt(process.env.DB_PORT || "5432"),
 });
 
-pool.query("SELECT NOW()", (err, res) => {
+pool.query("SELECT NOW()", (err, _res) => {
   if (err) {
     console.error("Error connecting to the database", err.stack);
   } else {

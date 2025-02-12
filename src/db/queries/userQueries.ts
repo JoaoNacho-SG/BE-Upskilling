@@ -14,7 +14,7 @@ export const getAllUsers = async ({
 export const getUserById = async ({
   userid,
 }: {
-  userid: string;
+  userid: number;
 }): Promise<User> => {
   const query = `SELECT * FROM users WHERE userid = $1`;
   const { rows } = await pool.query(query, [userid]);
@@ -22,37 +22,34 @@ export const getUserById = async ({
 };
 
 export const createUser = async ({
-  name,
+  first_name,
+  last_name,
   email,
-  userid,
 }: {
-  name: { first: string; last: string };
+  first_name: string;
+  last_name: string;
   email: string;
-  userid: string;
 }): Promise<User> => {
-  const query = `INSERT INTO users (first_name, last_name, email, userid) VALUES ($1, $2, $3, $4) RETURNING *`;
-  const { rows } = await pool.query(query, [
-    name.first,
-    name.last,
-    email,
-    userid,
-  ]);
+  const query = `INSERT INTO users (first_name, last_name, email) VALUES ($1, $2, $3) RETURNING *`;
+  const { rows } = await pool.query(query, [first_name, last_name, email]);
   return rows[0];
 };
 
 export const editUser = async ({
   userid,
-  name,
+  first_name,
+  last_name,
   email,
 }: {
-  userid: string;
-  name: { first: string; last: string };
+  userid: number;
+  first_name: string;
+  last_name: string;
   email: string;
 }): Promise<User> => {
   const query = `UPDATE users SET first_name = $1, last_name = $2, email = $3 WHERE userid = $4 RETURNING *`;
   const { rows } = await pool.query(query, [
-    name.first,
-    name.last,
+    first_name,
+    last_name,
     email,
     userid,
   ]);

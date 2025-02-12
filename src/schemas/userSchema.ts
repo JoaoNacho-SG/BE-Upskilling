@@ -1,16 +1,21 @@
-export interface ShoppingCart {
-  cartid: string;
-  userid: string;
-  products: string[];
-  cartname: string;
-}
+import { UserEntity } from "../database/entities/UserEntity";
 
-export interface User {
-  userid: string;
+export type ShoppingCart = {
+  cartid: number;
+  user: UserEntity;
+  userid: number;
+  cartname: string;
+};
+
+export type User = {
+  userid: number;
   email: string;
-  name: {
-    first: string;
-    last: string;
-  };
-  shoppingCarts?: ShoppingCart[];
-}
+  first_name: string;
+  last_name: string;
+};
+
+export type InsertUser = {
+  email: string;
+  first_name: string;
+  last_name: string;
+};
