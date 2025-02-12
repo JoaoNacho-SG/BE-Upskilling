@@ -18,9 +18,9 @@ export class UserRepository {
 
   public async getUserById(userid: number): Promise<User | null> {
     return this.repository
-      .createQueryBuilder()
-      .select()
-      .where("userid = :userid", { userid })
+      .createQueryBuilder("user")
+      .leftJoinAndSelect("user.cart", "cart")
+      .where("user.userid = :userid", { userid })
       .getOne();
   }
 

@@ -10,9 +10,9 @@ export class ShoppingCartRepository {
 
   public async getShoppingCart(userid: number): Promise<ShoppingCart[]> {
     return this.repository
-      .createQueryBuilder()
-      .select()
-      .where("userid = :userid", { userid })
+      .createQueryBuilder("cart")
+      .leftJoinAndSelect("cart.user", "user")
+      .where("cart.userid = :userid", { userid })
       .getMany();
   }
 
