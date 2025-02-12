@@ -12,9 +12,9 @@ export class CartEntity {
   @PrimaryGeneratedColumn("increment")
   cartid!: number;
 
-  @ManyToOne(() => UserEntity, (user) => user.userid, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "userid" })
-  user!: UserEntity;
+  // @ManyToOne(() => UserEntity, (user) => user.userid, { onDelete: "CASCADE" })
+  // @JoinColumn({ name: "userid" })
+  // user!: UserEntity;
 
   @Column("int", { nullable: false })
   userid!: number;

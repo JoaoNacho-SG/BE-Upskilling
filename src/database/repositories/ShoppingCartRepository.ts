@@ -1,27 +1,29 @@
-import { DataSource } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 import { CartEntity } from "../entities/ShoppingCartEntity";
 import { ShoppingCart } from "../../schemas/userSchema";
 
 export class ShoppingCartRepository {
-  constructor(private readonly dataSource: DataSource) {}
+  private repository: Repository<CartEntity>;
+  constructor(dataSource: DataSource) {
+    this.repository = dataSource.getRepository(CartEntity);
+  }
 
   public async getShoppingCart(userid: number): Promise<ShoppingCart[]> {
-    return this.dataSource
-      .createQueryBuilder()
-      .from(CartEntity, "shoppingCart")
-      .select(["cartname", "first_name", "last_name"])
-      .where("userid = :userid", { userid })
-      .getMany();
+    // return this.repository
+    //   .createQueryBuilder()
+    //   .select(["cartname", "first_name", "last_name"])
+    //   .where("userid = :userid", { userid })
+    //   .getMany();
+    return [] as any;
   }
 
   public async createShoppingCart(
     userid: number,
     cartname: string
   ): Promise<ShoppingCart> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .insert()
-      .into(CartEntity)
       .values({ userid, cartname })
       .returning("*")
       .execute()
@@ -32,7 +34,7 @@ export class ShoppingCartRepository {
     cartid: number,
     cartname: string
   ): Promise<ShoppingCart> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .update(CartEntity)
       .set({ cartname })
@@ -43,10 +45,9 @@ export class ShoppingCartRepository {
   }
 
   public async deleteShoppingCart(cartid: number): Promise<ShoppingCart> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .delete()
-      .from(CartEntity)
       .where("cartid = :cartid", { cartid })
       .returning("*")
       .execute()

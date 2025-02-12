@@ -1,33 +1,33 @@
 import { UserEntity } from "../entities/UserEntity";
 import { InsertUser, User } from "../../schemas/userSchema";
-import { DataSource } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 export class UserRepository {
-  constructor(private readonly dataSource: DataSource) {}
+  private repository: Repository<UserEntity>;
+  constructor(dataSource: DataSource) {
+    this.repository = dataSource.getRepository(UserEntity);
+  }
 
   public async getAllUsers(limit?: number): Promise<User[]> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
-      .from(UserEntity, "users")
       .select()
-      .limit(limit)
+      .limit(limit ? limit : 100)
       .getMany();
   }
 
   public async getUserById(userid: number): Promise<User | null> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
-      .from(UserEntity, "users")
       .select()
       .where("userid = :userid", { userid })
       .getOne();
   }
 
   public async createUser(user: InsertUser): Promise<User> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .insert()
-      .into(UserEntity)
       .values(user)
       .returning("*")
       .execute()
@@ -35,7 +35,7 @@ export class UserRepository {
   }
 
   public async editUser(user: User): Promise<User> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .update(UserEntity)
       .set(user)
@@ -46,10 +46,9 @@ export class UserRepository {
   }
 
   public async deleteUser(userid: number): Promise<User> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
       .delete()
-      .from(UserEntity)
       .where("userid = :userid", { userid })
       .returning("*")
       .execute()
@@ -57,9 +56,8 @@ export class UserRepository {
   }
 
   public async getUserByEmail(email: string): Promise<User | null> {
-    return this.dataSource
+    return this.repository
       .createQueryBuilder()
-      .from(UserEntity, "users")
       .select()
       .where("email = :email", { email })
       .getOne();

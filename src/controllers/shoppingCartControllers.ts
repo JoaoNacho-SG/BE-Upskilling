@@ -5,21 +5,20 @@ import { ShoppingCartService } from "../services/shoppingCartServices";
 export class ShoppingCartControllers {
   constructor(public shoppingCartService: ShoppingCartService) {}
 
-  public async getShoppingCart(req: Request, res: Response) {
+  public getShoppingCart = async (req: Request, res: Response) => {
     const { userid } = req.params;
     const shoppingCart = await this.shoppingCartService.getShoppingCart(
       Number(userid)
     );
     res.status(200).json(shoppingCart);
-  }
+  };
 
-  public async createShoppingCart(
+  public createShoppingCart = async (
     req: Request,
     res: Response,
     next: NextFunction
-  ) {
-    const { cartname } = req.body;
-    const { userid } = req.params;
+  ) => {
+    const { cartname, userid } = req.body;
     if (!userid || !cartname) {
       next(createError("User ID and cart name are required", 400));
     }
@@ -28,13 +27,13 @@ export class ShoppingCartControllers {
       cartname
     );
     res.status(201).json(newShoppingCart);
-  }
+  };
 
-  public async editShoppingCart(
+  public editShoppingCart = async (
     req: Request,
     res: Response,
     next: NextFunction
-  ) {
+  ) => {
     const { cartid } = req.params;
     const { cartname } = req.body;
     if (!cartid || !cartname) {
@@ -45,13 +44,13 @@ export class ShoppingCartControllers {
       cartname
     );
     res.status(200).json(editedShoppingCart);
-  }
+  };
 
-  public async deleteShoppingCart(
+  public deleteShoppingCart = async (
     req: Request,
     res: Response,
     next: NextFunction
-  ) {
+  ) => {
     const { cartid } = req.params;
     if (!cartid) {
       next(createError("Cart ID is required", 400));
@@ -59,9 +58,9 @@ export class ShoppingCartControllers {
     const deletedShoppingCart =
       await this.shoppingCartService.deleteShoppingCart(Number(cartid));
     res.status(200).json(deletedShoppingCart);
-  }
+  };
 
-  // public async addProduct(req: Request, res: Response, next: NextFunction) {
+  // public addProduct = async (req: Request, res: Response, next: NextFunction) => {
   //   const { cartid } = req.params;
   //   const { productid } = req.body;
   //   if (!cartid || !productid) {
@@ -74,7 +73,7 @@ export class ShoppingCartControllers {
   //   res.status(201).json(newProduct);
   // }
 
-  // public async removeProduct(req: Request, res: Response, next: NextFunction) {
+  // public removeProduct = async (req: Request, res: Response, next: NextFunction) => {
   //   const { cartid } = req.params;
   //   const { productid } = req.body;
   //   if (!cartid || !productid) {

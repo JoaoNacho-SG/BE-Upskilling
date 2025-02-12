@@ -2,9 +2,9 @@ import dotenv from "dotenv";
 import express from "express";
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/products";
+import shoppingCartRoutes from "./routes/shoppingCart";
 import { loggerFn } from "./middleware/loggerFn";
 import { errorHandler } from "./middleware/errorHandlerFn";
-import shoppingCartRoutes from "./routes/shoppingCart";
 import { AppDataSource } from "./database/data-source";
 import "reflect-metadata";
 

@@ -5,34 +5,28 @@ export class ShoppingCartService {
   constructor(public shoppingCartRepository: ShoppingCartRepository) {}
 
   public async getShoppingCart(userid: number): Promise<ShoppingCart[]> {
-    const shoppingCart = await this.shoppingCartRepository.getShoppingCart(
-      userid
-    );
-    return shoppingCart;
+    return await this.shoppingCartRepository.getShoppingCart(userid);
   }
 
   public async createShoppingCart(
     userid: number,
     cartname: string
   ): Promise<ShoppingCart> {
-    const newShoppingCart =
-      await this.shoppingCartRepository.createShoppingCart(userid, cartname);
-    return newShoppingCart;
+    return await this.shoppingCartRepository.createShoppingCart(
+      userid,
+      cartname
+    );
   }
 
   public async editShoppingCart(
     cartid: number,
     cartname: string
   ): Promise<ShoppingCart> {
-    const editedShoppingCart =
-      await this.shoppingCartRepository.editShoppingCart(cartid, cartname);
-    return editedShoppingCart;
+    return await this.shoppingCartRepository.editShoppingCart(cartid, cartname);
   }
 
   public async deleteShoppingCart(cartid: number): Promise<ShoppingCart> {
-    const deletedShoppingCart =
-      await this.shoppingCartRepository.deleteShoppingCart(cartid);
-    return deletedShoppingCart;
+    return await this.shoppingCartRepository.deleteShoppingCart(cartid);
   }
 
   // public async addProduct({

@@ -7,36 +7,38 @@ import { ShoppingCartControllers } from "../controllers/shoppingCartControllers"
 
 const shoppingCartRoutes = express.Router();
 const shoppingCartRepository = new ShoppingCartRepository(AppDataSource);
-const cartService = new ShoppingCartService(shoppingCartRepository);
-const cartControllers = new ShoppingCartControllers(cartService);
+const shoppingCartService = new ShoppingCartService(shoppingCartRepository);
+const shoppingCartControllers = new ShoppingCartControllers(
+  shoppingCartService
+);
 
 shoppingCartRoutes.get(
   SHOPPING_CART.SHOPPING_CART_USER,
-  cartControllers.getShoppingCart
+  shoppingCartControllers.getShoppingCart
 );
 shoppingCartRoutes.post(
-  SHOPPING_CART.SHOPPING_CART_USER,
-  cartControllers.createShoppingCart
+  SHOPPING_CART.SHOPPING_CART,
+  shoppingCartControllers.createShoppingCart
 );
 shoppingCartRoutes.put(
   SHOPPING_CART.SHOPPING_CART_BY_ID,
-  cartControllers.editShoppingCart
+  shoppingCartControllers.editShoppingCart
 );
 shoppingCartRoutes.delete(
   SHOPPING_CART.SHOPPING_CART_BY_ID,
-  cartControllers.deleteShoppingCart
+  shoppingCartControllers.deleteShoppingCart
 );
 // shoppingCartRoutes.post(
 //   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   cartControllers.addProduct
+//   shoppingCartControllers.addProduct
 // );
 // shoppingCartRoutes.delete(
 //   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   cartControllers.removeProduct
+//   shoppingCartControllers.removeProduct
 // );
 // shoppingCartRoutes.get(
 //   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   cartControllers.getCartProducts
+//   shoppingCartControllers.getCartProducts
 // );
 
 export default shoppingCartRoutes;
