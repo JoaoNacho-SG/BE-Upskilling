@@ -9,12 +9,11 @@ export class ShoppingCartRepository {
   }
 
   public async getShoppingCart(userid: number): Promise<ShoppingCart[]> {
-    // return this.repository
-    //   .createQueryBuilder()
-    //   .select(["cartname", "first_name", "last_name"])
-    //   .where("userid = :userid", { userid })
-    //   .getMany();
-    return [] as any;
+    return this.repository
+      .createQueryBuilder()
+      .select()
+      .where("userid = :userid", { userid })
+      .getMany();
   }
 
   public async createShoppingCart(
