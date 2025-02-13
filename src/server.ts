@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
+import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/products";
 import shoppingCartRoutes from "./routes/shoppingCart";
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/api/", authRoutes);
 app.use("/api/", userRoutes);
 app.use("/api/", productRoutes);
 app.use("/api/", shoppingCartRoutes);

@@ -31,8 +31,8 @@ export class UserControllers {
     res: Response,
     next: NextFunction
   ) => {
-    const { first_name, last_name, email } = req.body;
-    if (!first_name || !last_name || !email) {
+    const { first_name, last_name, email, password } = req.body;
+    if (!first_name || !last_name || !email || !password) {
       next(createError("Name and email are required", 400));
     }
 
@@ -40,6 +40,7 @@ export class UserControllers {
       first_name,
       last_name,
       email,
+      password,
     });
     res.status(201).json(newUser);
   };
@@ -81,20 +82,5 @@ export class UserControllers {
         next(createError("An unknown error occurred", 404));
       }
     }
-  };
-
-  public getUserByEmail = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    const { email } = req.params;
-    const user = await this.userService.getUserByEmail(email);
-
-    if (!user) {
-      next(createError("User was not found!", 404));
-    }
-
-    res.status(200).json(user);
   };
 }

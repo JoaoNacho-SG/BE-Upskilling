@@ -55,11 +55,14 @@ export class UserRepository {
       .then((result) => result.raw[0]);
   }
 
-  public async getUserByEmail(email: string): Promise<User | null> {
+  public async authenticateUser(
+    email: string,
+    password: string
+  ): Promise<User | null> {
     return this.repository
       .createQueryBuilder()
       .select()
-      .where("email = :email", { email })
+      .where("email = :email AND password = :password", { email, password })
       .getOne();
   }
 }

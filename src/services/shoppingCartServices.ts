@@ -28,32 +28,4 @@ export class ShoppingCartService {
   public async deleteShoppingCart(cartid: number): Promise<ShoppingCart> {
     return await this.shoppingCartRepository.deleteShoppingCart(cartid);
   }
-
-  // public async addProduct({
-  //   cartid,
-  //   productid,
-  // }: {
-  //   cartid: number;
-  //   productid: number;
-  // }): Promise<ShoppingCart> {
-  //   const newProduct = await shoppingCartQueries.addProduct({
-  //     cartid,
-  //     productid,
-  //   });
-  //   return newProduct;
-  // }
-
-  // public async removeProduct({
-  //   cartid,
-  //   productid,
-  // }: {
-  //   cartid: number;
-  //   productid: number;
-  // }): Promise<ShoppingCart> {
-  //   const removedProduct = await shoppingCartQueries.removeProduct({
-  //     cartid,
-  //     productid,
-  //   });
-  //   return removedProduct;
-  // }
 }

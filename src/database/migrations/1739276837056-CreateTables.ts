@@ -31,6 +31,12 @@ export class CreateTables1739276837056 implements MigrationInterface {
             length: "100",
             isNullable: false,
           },
+          {
+            name: "password",
+            type: "varchar",
+            length: "10",
+            isNullable: false,
+          },
         ],
       })
     );

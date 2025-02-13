@@ -15,6 +15,9 @@ export class UserEntity {
   @Column("varchar", { length: 100, nullable: false, unique: true })
   email!: string;
 
+  @Column("varchar", { length: 100, nullable: false })
+  password!: string;
+
   @OneToMany(() => CartEntity, (cart) => cart.user)
   cart!: CartEntity[];
 }
