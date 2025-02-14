@@ -8,6 +8,12 @@ export const USER: Endpoint = {
   USER_BY_EMAIL: "/users/email/:email",
 };
 
+export const AUTH: Endpoint = {
+  LOGIN: "/login",
+  REFRESH_TOKEN: "/refresh-token",
+  LOGOUT: "/logout",
+};
+
 export const SHOPPING_CART: Endpoint = {
   SHOPPING_CART: "/shopping-cart",
   SHOPPING_CART_USER: "/shopping-cart/:userid",

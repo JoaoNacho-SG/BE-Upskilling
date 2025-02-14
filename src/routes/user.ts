@@ -12,7 +12,6 @@ const userControllers = new UserControllers(userService);
 
 userRoutes.get(USER.USERS, userControllers.getAllUsers);
 userRoutes.get(USER.USER_BY_ID, userControllers.getUserById);
-userRoutes.get(USER.USER_BY_EMAIL, userControllers.getUserByEmail);
 userRoutes.post(USER.USERS, userControllers.createUser);
 userRoutes.put(USER.USER_BY_ID, userControllers.editUser);
 userRoutes.delete(USER.USER_BY_ID, userControllers.deleteUser);

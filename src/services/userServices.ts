@@ -23,8 +23,4 @@ export class UserService {
   public async deleteUser(userid: number): Promise<User> {
     return this.userRepository.deleteUser(userid);
   }
-
-  public async getUserByEmail(email: string): Promise<User | null> {
-    return this.userRepository.getUserByEmail(email);
-  }
 }
