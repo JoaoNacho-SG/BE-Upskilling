@@ -10,6 +10,8 @@ export const USER: Endpoint = {
 
 export const AUTH: Endpoint = {
   LOGIN: "/login",
+  REFRESH_TOKEN: "/refresh-token",
+  LOGOUT: "/logout",
 };
 
 export const SHOPPING_CART: Endpoint = {

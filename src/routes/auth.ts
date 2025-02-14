@@ -12,5 +12,7 @@ const authService = new AuthService(userRepository);
 const authControllers = new AuthControllers(authService);
 
 authRoutes.post(AUTH.LOGIN, authControllers.login);
+authRoutes.post(AUTH.REFRESH_TOKEN, authControllers.refreshToken);
+authRoutes.post(AUTH.LOGOUT, authControllers.logout);
 
 export default authRoutes;
