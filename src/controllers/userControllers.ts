@@ -17,13 +17,13 @@ export class UserControllers {
     next: NextFunction
   ) => {
     const { userid } = req.params;
-    const user = await this.userService.getUserById(Number(userid));
-
-    if (!user) {
-      next(createError("User was not found!", 404));
+    try {
+      const user = await this.userService.getUserById(Number(userid));
+      res.status(200).json(user);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 404));
+      next(createError("An unknown error occurred", 500));
     }
-
-    res.status(200).json(user);
   };
 
   public createUser = async (
@@ -32,38 +32,35 @@ export class UserControllers {
     next: NextFunction
   ) => {
     const { first_name, last_name, email, password } = req.body;
-    if (!first_name || !last_name || !email || !password) {
-      next(createError("Name and email are required", 400));
+    try {
+      const newUser = await this.userService.createUser({
+        first_name,
+        last_name,
+        email,
+        password,
+      });
+      res.status(201).json(newUser);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
-
-    const newUser = await this.userService.createUser({
-      first_name,
-      last_name,
-      email,
-      password,
-    });
-    res.status(201).json(newUser);
   };
 
   public editUser = async (req: Request, res: Response, next: NextFunction) => {
     const { userid } = req.params;
     const { first_name, last_name, email } = req.body;
-
-    if (!userid) {
-      next(createError("User was not found", 400));
+    try {
+      const editedUser = await this.userService.editUser({
+        userid: Number(userid),
+        first_name,
+        last_name,
+        email,
+      });
+      res.status(200).json(editedUser);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
-
-    if (!first_name || !last_name || !email) {
-      next(createError("Name and email are required", 400));
-    }
-
-    const editedUser = await this.userService.editUser({
-      userid: Number(userid),
-      first_name,
-      last_name,
-      email,
-    });
-    res.status(200).json(editedUser);
   };
 
   public deleteUser = async (
@@ -76,11 +73,8 @@ export class UserControllers {
       await this.userService.deleteUser(Number(userid));
       res.status(204).send();
     } catch (error) {
-      if (error instanceof Error) {
-        next(createError(error.message, 400));
-      } else {
-        next(createError("An unknown error occurred", 404));
-      }
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
   };
 }
