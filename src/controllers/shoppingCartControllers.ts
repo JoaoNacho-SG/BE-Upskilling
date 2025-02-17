@@ -19,14 +19,16 @@ export class ShoppingCartControllers {
     next: NextFunction
   ) => {
     const { cartname, userid } = req.body;
-    if (!userid || !cartname) {
-      next(createError("User ID and cart name are required", 400));
+    try {
+      const newShoppingCart = await this.shoppingCartService.createShoppingCart(
+        Number(userid),
+        cartname
+      );
+      res.status(201).json(newShoppingCart);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
-    const newShoppingCart = await this.shoppingCartService.createShoppingCart(
-      Number(userid),
-      cartname
-    );
-    res.status(201).json(newShoppingCart);
   };
 
   public editShoppingCart = async (
@@ -36,14 +38,17 @@ export class ShoppingCartControllers {
   ) => {
     const { cartid } = req.params;
     const { cartname } = req.body;
-    if (!cartid || !cartname) {
-      next(createError("Cart ID and cart name are required", 400));
+    try {
+      const editedShoppingCart =
+        await this.shoppingCartService.editShoppingCart(
+          Number(cartid),
+          cartname
+        );
+      res.status(200).json(editedShoppingCart);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
-    const editedShoppingCart = await this.shoppingCartService.editShoppingCart(
-      Number(cartid),
-      cartname
-    );
-    res.status(200).json(editedShoppingCart);
   };
 
   public deleteShoppingCart = async (
@@ -52,12 +57,14 @@ export class ShoppingCartControllers {
     next: NextFunction
   ) => {
     const { cartid } = req.params;
-    if (!cartid) {
-      next(createError("Cart ID is required", 400));
+    try {
+      const deletedShoppingCart =
+        await this.shoppingCartService.deleteShoppingCart(Number(cartid));
+      res.status(200).json(deletedShoppingCart);
+    } catch (error) {
+      if (error instanceof Error) next(createError(error.message, 400));
+      next(createError("An unknown error occurred", 500));
     }
-    const deletedShoppingCart =
-      await this.shoppingCartService.deleteShoppingCart(Number(cartid));
-    res.status(200).json(deletedShoppingCart);
   };
 
   // public addProduct = async (req: Request, res: Response, next: NextFunction) => {

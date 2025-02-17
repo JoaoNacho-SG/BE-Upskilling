@@ -65,4 +65,11 @@ export class UserRepository {
       .where("email = :email AND password = :password", { email, password })
       .getOne();
   }
+
+  public async getUserByEmail(email: string): Promise<User | null> {
+    return this.repository
+      .createQueryBuilder()
+      .where("email = :email", { email })
+      .getOne();
+  }
 }

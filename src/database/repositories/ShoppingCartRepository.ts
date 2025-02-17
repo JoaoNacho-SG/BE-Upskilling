@@ -52,4 +52,11 @@ export class ShoppingCartRepository {
       .execute()
       .then((result) => result.raw[0]);
   }
+
+  public async getOneCartById(cartid: number): Promise<ShoppingCart | null> {
+    return this.repository
+      .createQueryBuilder()
+      .where("cartid = :cartid", { cartid })
+      .getOne();
+  }
 }
