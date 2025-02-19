@@ -11,7 +11,7 @@
     "serve": "node dist/server.js",
     "start:prod": "npm run build && npm run serve",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "migrate": "pnpm typeorm migration:run -- -d ./src/database/migrations"
+    "migrate": "npm run typeorm migration:run -- -d ./src/database/migrations"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "typeorm-extension": "^3.6.3"
   }
 }
