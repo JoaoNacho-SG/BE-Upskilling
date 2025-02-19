@@ -3,7 +3,7 @@ import { UserEntity } from "../database/entities/UserEntity";
 
 export type ShoppingCart = {
   cartid: number;
-  user: UserEntity;
+  user?: UserEntity;
   userid: number;
   cartname: string;
 };
