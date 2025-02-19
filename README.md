@@ -7,3 +7,4 @@
 - [TypeORM](https://github.com/JoaoNacho-SG/BE-Upskilling/tree/typeORM)
 - [JWT Authentication & Protect Routes](https://github.com/JoaoNacho-SG/BE-Upskilling/tree/JWTAuth)
 - [Tests w/ Jest](https://github.com/JoaoNacho-SG/BE-Upskilling/tree/test-jest)
+- [Docker](https://github.com/JoaoNacho-SG/BE-Upskilling/tree/docker)
