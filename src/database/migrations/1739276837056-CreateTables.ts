@@ -65,31 +65,10 @@ export class CreateTables1739276837056 implements MigrationInterface {
         ],
       })
     );
-
-    // await queryRunner.createTable(
-    //   new Table({
-    //     name: "cart_products",
-    //     columns: [
-    //       {
-    //         name: "cartid",
-    //         type: "serial",
-    //         isPrimary: true,
-    //         isNullable: false,
-    //         generationStrategy: "increment",
-    //       },
-    //       {
-    //         name: "productid",
-    //         type: "uuid",
-    //         isNullable: false,
-    //       },
-    //     ],
-    //   })
-    // );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable("users");
     await queryRunner.dropTable("shopping_cart");
-    // await queryRunner.dropTable("cart_products");
   }
 }

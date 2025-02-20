@@ -23,3 +23,8 @@ export type InsertUser = {
   first_name: string;
   last_name: string;
 };
+
+export type InsertShoppingCart = {
+  userid: number;
+  cartname: string;
+};

@@ -6,8 +6,6 @@ import { config } from "dotenv";
 
 config();
 
-// TODO: Check this l8r
-
 const dataSourceOpts: DataSourceOptions = {
   type: "postgres",
   host: process.env.DB_HOST || "localhost",
@@ -15,10 +13,10 @@ const dataSourceOpts: DataSourceOptions = {
   password: process.env.DB_PASSWORD || "password",
   name: "test",
   database: "database-test",
-  port: parseInt(process.env.DB_PORT || "5432"),
-  // synchronize: true,
+  port: parseInt(process.env.DB_PORT || "5433"),
+  synchronize: true,
   dropSchema: true,
-  migrations: [`${__dirname}/migrations/*`],
+  // migrations: [`${__dirname}/migrations/*`],
   entities: [UserEntity, CartEntity],
 };
 
@@ -28,7 +26,7 @@ export class TestDatabaseHandler {
   public testDataSource: DataSource;
 
   constructor() {
-    this.initialDatabase = process.env.DB_NAME || "postgres";
+    this.initialDatabase = process.env.DB_NAME || "be-upskill";
     const newDataSource = new DataSource(dataSourceOpts);
     this.testDataSource = newDataSource;
   }
@@ -42,6 +40,7 @@ export class TestDatabaseHandler {
       ifNotExist: false,
     });
 
+    console.log("Initializing test database...");
     await this.testDataSource.initialize();
     console.log(`Test database created: ${this.testDatabase}`);
     console.log("Running migrations...");

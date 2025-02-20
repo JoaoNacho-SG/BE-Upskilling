@@ -3,9 +3,7 @@ import { TestDatabaseHandler } from "../helpers/testDatabaseHandler";
 import { UserRepository } from "../database/repositories/UserRepository";
 import { User } from "../schemas/userSchema";
 
-// TODO: Check this test l8r
-
-describe.skip("Users", () => {
+describe("Users", () => {
   let testDataHandler: TestDatabaseHandler;
   let userService: UserService;
 
