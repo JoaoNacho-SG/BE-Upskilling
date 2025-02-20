@@ -3,7 +3,6 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
-import productRoutes from "./routes/products";
 import shoppingCartRoutes from "./routes/shoppingCart";
 import { loggerFn } from "./middleware/loggerFn";
 import { errorHandler } from "./middleware/errorHandlerFn";
@@ -24,7 +23,6 @@ app.use(protectRoutesFn);
 app.use("/api/", authRoutes);
 app.use("/api/", userRoutes);
 app.use("/api/", shoppingCartRoutes);
-app.use("/api/", productRoutes);
 app.use(errorHandler);
 
 app.get("/", (_req, res) => {

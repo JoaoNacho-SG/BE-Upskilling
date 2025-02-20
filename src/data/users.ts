@@ -1,23 +1,23 @@
-import { User } from "../schemas/userSchema";
+import { InsertUser } from "../schemas/userSchema";
 
-const users: User[] = [
+const users: InsertUser[] = [
   {
-    userid: 1,
     email: "some1@some.com",
     first_name: "John",
     last_name: "Doe",
+    password: "password",
   },
   {
-    userid: 2,
     email: "some2@some.com",
     first_name: "Jane",
     last_name: "Smith",
+    password: "password",
   },
   {
-    userid: 3,
     email: "some3@some.com",
     first_name: "Alice",
     last_name: "Johnson",
+    password: "password",
   },
 ];
 
