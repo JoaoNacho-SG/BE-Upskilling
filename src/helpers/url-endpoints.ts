@@ -18,10 +18,8 @@ export const SHOPPING_CART: Endpoint = {
   SHOPPING_CART: "/shopping-cart",
   SHOPPING_CART_USER: "/shopping-cart/:userid",
   SHOPPING_CART_BY_ID: "/shopping-cart/:cartid",
-  SHOPPING_CART_PRODUCTS: "/shopping-cart/:cartid/products",
 };
 
-export const PRODUCTS: Endpoint = {
-  LIST: "/list",
-  ADD: "/add",
+export const PRODUCT: Endpoint = {
+  CART_PRODUCTS_BY_ID: "/cart-products/:cartid",
 };

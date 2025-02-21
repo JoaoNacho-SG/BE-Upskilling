@@ -28,17 +28,5 @@ shoppingCartRoutes.delete(
   SHOPPING_CART.SHOPPING_CART_BY_ID,
   shoppingCartControllers.deleteShoppingCart
 );
-// shoppingCartRoutes.post(
-//   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   shoppingCartControllers.addProduct
-// );
-// shoppingCartRoutes.delete(
-//   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   shoppingCartControllers.removeProduct
-// );
-// shoppingCartRoutes.get(
-//   SHOPPING_CART.SHOPPING_CART_PRODUCTS,
-//   shoppingCartControllers.getCartProducts
-// );
 
 export default shoppingCartRoutes;
