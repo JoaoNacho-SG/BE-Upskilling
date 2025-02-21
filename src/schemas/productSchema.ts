@@ -1,10 +1,7 @@
 export interface Product {
-  id: string;
+  productid: string;
   name: string;
   price: number;
-  categories: string[];
-  description: string;
-  related: string[];
 }
 
 export interface InsertProduct {

@@ -9,6 +9,7 @@ import { errorHandler } from "./middleware/errorHandlerFn";
 import { AppDataSource } from "./database/data-source";
 import "reflect-metadata";
 import { protectRoutesFn } from "./middleware/protectRoutesFn";
+import cartProductRoutes from "./routes/cartProducts";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(protectRoutesFn);
 app.use("/api/", authRoutes);
 app.use("/api/", userRoutes);
 app.use("/api/", shoppingCartRoutes);
+app.use("/api/", cartProductRoutes);
 app.use(errorHandler);
 
 app.get("/", (_req, res) => {

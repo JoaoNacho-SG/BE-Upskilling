@@ -66,30 +66,4 @@ export class ShoppingCartControllers {
       next(createError("An unknown error occurred", 500));
     }
   };
-
-  // public addProduct = async (req: Request, res: Response, next: NextFunction) => {
-  //   const { cartid } = req.params;
-  //   const { productid } = req.body;
-  //   if (!cartid || !productid) {
-  //     next(createError("Cart ID and product ID are required", 400));
-  //   }
-  //   const newProduct = await this.shoppingCartService.addProduct({
-  //     cartid: Number(cartid),
-  //     productid: Number(productid),
-  //   });
-  //   res.status(201).json(newProduct);
-  // }
-
-  // public removeProduct = async (req: Request, res: Response, next: NextFunction) => {
-  //   const { cartid } = req.params;
-  //   const { productid } = req.body;
-  //   if (!cartid || !productid) {
-  //     next(createError("Cart ID and product ID are required", 400));
-  //   }
-  //   const removedProduct = await this.shoppingCartService.removeProduct({
-  //     cartid: Number(cartid),
-  //     productid: Number(productid),
-  //   });
-  //   res.status(200).json(removedProduct);
-  // }
 }
